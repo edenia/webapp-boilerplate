@@ -8,11 +8,11 @@ A basic skeleton for React Web App projects
 
 ### Before to start
 
-Somethings you need before continue:
+Somethings you need before getting started:
 
-  [git]: <https://git-scm.com/>
-  [node.js]: <https://nodejs.org/es/>
-  [yarn]: <https://yarnpkg.com/>
+  - [git](https://git-scm.com/)
+  - [node.js](https://nodejs.org/es/)
+  - [yarn](https://yarnpkg.com/)
 
 ### First time
 
@@ -29,12 +29,12 @@ $ yarn
 $ yarn start
 ```
 
-Then Navigate to http://localhost:3000
+Then Navigate to `http://localhost:3000`
 
 
 ## Contributing
 
-Contributing Guidelines https://developers.eoscostarica.io/docs/open-source-guidelines.
+Please Read EOS Costa Rica's [Open Source Contributing Guidelines](https://developers.eoscostarica.io/docs/open-source-guidelines).
 
 Please report bugs big and small by [opening an issue](https://github.com/eoscostarica/webapp-boilerplate/issues)
 
