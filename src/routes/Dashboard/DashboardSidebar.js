@@ -51,28 +51,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const DashboardSidebarContent = ({ user, onLogout }) => {
+const PAGES = [
+  {
+    title: 'Products',
+    href: '/dashboard/products',
+    icon: <ShoppingBasketIcon />
+  },
+  {
+    title: 'Users',
+    href: '/dashboard/users',
+    icon: <PeopleIcon />
+  }
+]
+
+const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
   const classes = useStyles()
 
-  const pages = [
-    {
-      title: 'Products',
-      href: '/dashboard/products',
-      icon: <ShoppingBasketIcon />
-    },
-    {
-      title: 'Users',
-      href: '/dashboard/users',
-      icon: <PeopleIcon />
-    }
-  ]
+  const sideBarOptions = appUseUAL ? (ual.activeUser ? PAGES : []) : PAGES
 
   return (
     <>
       <Profile user={user} />
       <Divider className={classes.divider} />
       <List className={classes.nav}>
-        {pages.map((page) => (
+        {sideBarOptions.map((page) => (
           <ListItem className={classes.item} disableGutters key={page.title}>
             <Button
               activeClassName={classes.active}
@@ -85,14 +87,20 @@ const DashboardSidebarContent = ({ user, onLogout }) => {
             </Button>
           </ListItem>
         ))}
-        <ListItem className={classes.item} disableGutters key="logoutOption">
-          <Button className={classes.button} color="inherit" onClick={onLogout}>
-            <div className={classes.icon}>
-              <InputIcon />
-            </div>
-            Logout
-          </Button>
-        </ListItem>
+        {!appUseUAL && (
+          <ListItem className={classes.item} disableGutters key="logoutOption">
+            <Button
+              className={classes.button}
+              color="inherit"
+              onClick={onLogout}
+            >
+              <div className={classes.icon}>
+                <InputIcon />
+              </div>
+              Logout
+            </Button>
+          </ListItem>
+        )}
       </List>
     </>
   )
@@ -100,7 +108,9 @@ const DashboardSidebarContent = ({ user, onLogout }) => {
 
 DashboardSidebarContent.propTypes = {
   user: PropTypes.object,
-  onLogout: PropTypes.func
+  onLogout: PropTypes.func,
+  ual: PropTypes.object,
+  appUseUAL: PropTypes.bool
 }
 
 export default DashboardSidebarContent

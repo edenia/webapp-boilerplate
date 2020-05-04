@@ -11,6 +11,9 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Toolbar from '@material-ui/core/Toolbar'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import FingerprintIcon from '@material-ui/icons/Fingerprint'
+
+import config from '../../config'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +50,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Main = ({ children, sidebarContent, topbarContent }) => {
+const MenuOption = ({ ual, handleSidebarOpen }) => {
+  const { appUseUAL } = config
+
+  if (!appUseUAL || ual.activeUser)
+    return (
+      <IconButton color="inherit" onClick={handleSidebarOpen}>
+        <MenuIcon />
+      </IconButton>
+    )
+
+  return (
+    <IconButton color="inherit" onClick={() => ual.showModal()}>
+      <FingerprintIcon />
+    </IconButton>
+  )
+}
+
+const Main = ({ children, sidebarContent, topbarContent, ual }) => {
   const classes = useStyles()
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('lg'), {
@@ -86,9 +106,7 @@ const Main = ({ children, sidebarContent, topbarContent }) => {
           </RouterLink>
           <Hidden mdDown>{topbarContent}</Hidden>
           <Hidden lgUp>
-            <IconButton color="inherit" onClick={handleSidebarOpen}>
-              <MenuIcon />
-            </IconButton>
+            <MenuOption ual={ual} handleSidebarOpen={handleSidebarOpen} />
           </Hidden>
         </Toolbar>
       </AppBar>
@@ -109,7 +127,13 @@ const Main = ({ children, sidebarContent, topbarContent }) => {
 Main.propTypes = {
   children: PropTypes.node,
   sidebarContent: PropTypes.node,
-  topbarContent: PropTypes.node
+  topbarContent: PropTypes.node,
+  ual: PropTypes.object
+}
+
+MenuOption.propTypes = {
+  ual: PropTypes.object,
+  handleSidebarOpen: PropTypes.func
 }
 
 export default Main

@@ -29,13 +29,13 @@ const Profile = ({ user, onClick }) => {
       <Avatar
         alt="Person"
         className={classes.avatar}
-        src={user.profilePicture}
+        src={user.profilePicture || ''}
         onClick={onClick}
       />
       <Typography className={classes.name} variant="h4">
-        {user.name}
+        {user.name || ''}
       </Typography>
-      <Typography variant="body2">{user.headline}</Typography>
+      <Typography variant="body2">{user.headline || ''}</Typography>
     </div>
   )
 }
@@ -43,6 +43,10 @@ const Profile = ({ user, onClick }) => {
 Profile.propTypes = {
   user: PropTypes.object,
   onClick: PropTypes.func
+}
+
+Profile.defaultProps = {
+  user: {}
 }
 
 export default Profile
