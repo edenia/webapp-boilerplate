@@ -1,29 +1,38 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Route, Redirect, Switch, useLocation } from 'react-router-dom'
+import {
+  Route,
+  Redirect,
+  Switch,
+  useLocation,
+  useHistory
+} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 
 import { MainContainer } from '../../containers'
 import { isAuthenticatedSelector } from '../../models/user'
+import config from '../../config'
 
 import DashboardSidebar from './DashboardSidebar'
 import DashboardTopbar from './DashboardTopbar'
 import DashboardProducts from './DashboardProducts'
 import DashboardUsers from './DashboardUsers'
 
-const Dashboard = ({ history }) => {
+const Dashboard = ({ ual }) => {
   const dispatch = useDispatch()
+  const { appUseUAL } = config
   const isAuthenticated = useSelector(isAuthenticatedSelector)
   const user = useSelector((state) => state.user)
   const location = useLocation()
+  const history = useHistory()
 
   const handleOnLogout = () => {
     dispatch.user.logout()
   }
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (appUseUAL || isAuthenticated) {
       return
     }
 
@@ -32,9 +41,21 @@ const Dashboard = ({ history }) => {
 
   return (
     <MainContainer
-      topbarContent={<DashboardTopbar onLogout={handleOnLogout} />}
+      ual={ual}
+      topbarContent={
+        <DashboardTopbar
+          onLogout={handleOnLogout}
+          ual={ual}
+          appUseUAL={appUseUAL}
+        />
+      }
       sidebarContent={
-        <DashboardSidebar user={user} onLogout={handleOnLogout} />
+        <DashboardSidebar
+          user={user}
+          onLogout={handleOnLogout}
+          ual={ual}
+          appUseUAL={appUseUAL}
+        />
       }
     >
       <Grid container spacing={4}>
@@ -45,7 +66,9 @@ const Dashboard = ({ history }) => {
             component={DashboardProducts}
           />
           <Route exact path="/dashboard/users" component={DashboardUsers} />
-          <Redirect from="/dashboard" to="/dashboard/products" />
+          {(!appUseUAL || ual.activeUser) && (
+            <Redirect from="/dashboard" to="/dashboard/products" />
+          )}
         </Switch>
       </Grid>
     </MainContainer>
@@ -53,7 +76,11 @@ const Dashboard = ({ history }) => {
 }
 
 Dashboard.propTypes = {
-  history: PropTypes.any
+  ual: PropTypes.object
+}
+
+Dashboard.defaultProps = {
+  ual: {}
 }
 
 export default Dashboard
