@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -12,6 +13,7 @@ import TableRow from '@material-ui/core/TableRow'
 const Products = () => {
   const dispatch = useDispatch()
   const products = useSelector((state) => state.product.entities)
+  const { t } = useTranslation('translations')
 
   useEffect(() => {
     dispatch.product.getEntities()
@@ -24,9 +26,9 @@ const Products = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Code</TableCell>
-                <TableCell>Description</TableCell>
-                <TableCell>Cost</TableCell>
+                <TableCell>{t('code')}</TableCell>
+                <TableCell>{t('description')}</TableCell>
+                <TableCell>{t('cost')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

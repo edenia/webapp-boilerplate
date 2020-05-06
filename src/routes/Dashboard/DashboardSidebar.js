@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/styles'
 import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
@@ -53,12 +54,12 @@ const useStyles = makeStyles((theme) => ({
 
 const PAGES = [
   {
-    title: 'Products',
+    title: 'products',
     href: '/dashboard/products',
     icon: <ShoppingBasketIcon />
   },
   {
-    title: 'Users',
+    title: 'users',
     href: '/dashboard/users',
     icon: <PeopleIcon />
   }
@@ -66,7 +67,7 @@ const PAGES = [
 
 const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
   const classes = useStyles()
-
+  const { t } = useTranslation('translations')
   const sideBarOptions = appUseUAL ? (ual.activeUser ? PAGES : []) : PAGES
 
   return (
@@ -83,7 +84,7 @@ const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
               to={page.href}
             >
               <div className={classes.icon}>{page.icon}</div>
-              {page.title}
+              {t(page.title)}
             </Button>
           </ListItem>
         ))}
@@ -97,7 +98,7 @@ const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
               <div className={classes.icon}>
                 <InputIcon />
               </div>
-              Logout
+              {t('logout')}
             </Button>
           </ListItem>
         )}
