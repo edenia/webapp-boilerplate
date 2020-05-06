@@ -2,16 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/styles'
-import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Button from '@material-ui/core/Button'
-import * as colors from '@material-ui/core/colors'
 import PeopleIcon from '@material-ui/icons/People'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
+import FingerprintIcon from '@material-ui/icons/Fingerprint'
 import InputIcon from '@material-ui/icons/Input'
 
-import Profile from '../../components/Profile'
 import CustomRouterLink from '../../components/CustomRouterLink'
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0
   },
   button: {
-    color: colors.blueGrey[800],
+    color: theme.palette.primary.light,
     padding: '10px 8px',
     justifyContent: 'flex-start',
     textTransform: 'none',
@@ -36,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightMedium
   },
   icon: {
-    color: theme.palette.icon,
     width: 24,
     height: 24,
     display: 'flex',
@@ -65,17 +62,14 @@ const PAGES = [
   }
 ]
 
-const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
+const DashboardSidebarContent = ({ user, onLogout, onLogin }) => {
   const classes = useStyles()
   const { t } = useTranslation('translations')
-  const sideBarOptions = appUseUAL ? (ual.activeUser ? PAGES : []) : PAGES
 
   return (
     <>
-      <Profile user={user} />
-      <Divider className={classes.divider} />
       <List className={classes.nav}>
-        {sideBarOptions.map((page) => (
+        {PAGES.map((page) => (
           <ListItem className={classes.item} disableGutters key={page.title}>
             <Button
               activeClassName={classes.active}
@@ -88,7 +82,21 @@ const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
             </Button>
           </ListItem>
         ))}
-        {!appUseUAL && (
+        {!user && (
+          <ListItem className={classes.item} disableGutters>
+            <Button
+              className={classes.button}
+              color="inherit"
+              onClick={onLogin}
+            >
+              <div className={classes.icon}>
+                <FingerprintIcon />
+              </div>
+              {t('login')}
+            </Button>
+          </ListItem>
+        )}
+        {user && (
           <ListItem className={classes.item} disableGutters key="logoutOption">
             <Button
               className={classes.button}
@@ -110,8 +118,7 @@ const DashboardSidebarContent = ({ user, onLogout, appUseUAL, ual }) => {
 DashboardSidebarContent.propTypes = {
   user: PropTypes.object,
   onLogout: PropTypes.func,
-  ual: PropTypes.object,
-  appUseUAL: PropTypes.bool
+  onLogin: PropTypes.func
 }
 
 export default DashboardSidebarContent

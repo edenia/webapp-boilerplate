@@ -1,12 +1,10 @@
 {
   "translations": {
-    "login": "Iniciar Sesión",
+    "login": "Iniciar sesión",
     "users": "Usuarios",
     "products": "Productos",
-    "commingSoon": "Muy Pronto!",
-    "code": "Código",
-    "cescription": "Descripción",
-    "cost": "Costo",
+    "productsTitle": "Listado de productos",
+    "usersTitle": "Listado de usuarios",
     "logout": "Salir"
   }
 }
