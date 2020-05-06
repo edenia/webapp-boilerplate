@@ -1,13 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/core/styles'
 import { UALProvider, withUAL } from 'ual-reactjs-renderer'
 
-import { authenticators, network } from './utils/ualAuthenticators'
+import { ualConfig } from './config'
 import App from './App'
-import store from './store'
 import theme from './theme'
 import * as serviceWorker from './serviceWorker'
 
@@ -16,18 +14,16 @@ import './i18n'
 const AppWithUAL = withUAL(App)
 
 render(
-  <Provider store={store}>
+  <UALProvider
+    chains={[ualConfig.network]}
+    authenticators={ualConfig.authenticators}
+    appName={ualConfig.appName}
+  >
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <UALProvider
-        chains={[network]}
-        authenticators={authenticators}
-        appName="eoscrwebappboilerplate"
-      >
-        <AppWithUAL />
-      </UALProvider>
+      <AppWithUAL />
     </ThemeProvider>
-  </Provider>,
+  </UALProvider>,
   document.getElementById('root')
 )
 

@@ -3,10 +3,8 @@
     "login": "Login",
     "users": "Users",
     "products": "Products",
-    "commingSoon": "Comming soon",
-    "code": "Code",
-    "cescription": "Description",
-    "cost": "Cost",
+    "productsTitle": "Products list",
+    "usersTitle": "Users list",
     "logout": "Logout"
   }
 }

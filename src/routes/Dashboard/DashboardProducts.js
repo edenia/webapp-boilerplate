@@ -1,49 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
+import Typography from '@material-ui/core/Typography'
 
 const Products = () => {
-  const dispatch = useDispatch()
-  const products = useSelector((state) => state.product.entities)
   const { t } = useTranslation('translations')
 
-  useEffect(() => {
-    dispatch.product.getEntities()
-  }, [dispatch])
-
   return (
-    <Grid item lg={12} sm={12} xl={12} xs={12}>
+    <Grid item xs={12}>
       <Card>
         <CardContent>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>{t('code')}</TableCell>
-                <TableCell>{t('description')}</TableCell>
-                <TableCell>{t('cost')}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((product, index) => (
-                <TableRow key={`product-table-row-${index}`}>
-                  <TableCell>{product.code}</TableCell>
-                  <TableCell>{product.description}</TableCell>
-                  <TableCell>
-                    {product.currency}
-                    {product.cost}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <Typography variant="h1">{t('productsTitle')}</Typography>
         </CardContent>
       </Card>
     </Grid>

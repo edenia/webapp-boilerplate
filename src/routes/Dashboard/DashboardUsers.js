@@ -5,14 +5,14 @@ import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-const Users = (props) => {
+const Users = () => {
   const { t } = useTranslation('translations')
 
   return (
-    <Grid item lg={12} sm={12} xl={12} xs={12}>
+    <Grid item xs={12}>
       <Card>
         <CardContent>
-          <Typography variant="h1">{t('commingSoon')}</Typography>
+          <Typography variant="h1">{t('usersTitle')}</Typography>
         </CardContent>
       </Card>
     </Grid>

@@ -8,17 +8,17 @@ import CustomRouterLink from '../../components/CustomRouterLink'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(4)
+    padding: theme.spacing(4),
+    display: 'flex',
+    height: '100vh'
   },
   content: {
-    paddingTop: 150,
-    textAlign: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex'
   },
-  image: {
-    marginTop: 50,
-    display: 'inline-block',
-    maxWidth: '100%',
-    width: 560
+  centerText: {
+    textAlign: 'center'
   }
 }))
 
@@ -27,9 +27,9 @@ const NotFound = (props) => {
 
   return (
     <div className={classes.root}>
-      <Grid container justify="center" spacing={4}>
-        <Grid item lg={6} xs={12}>
-          <div className={classes.content}>
+      <Grid container spacing={4}>
+        <Grid item xs={12} className={classes.content}>
+          <div className={classes.centerText}>
             <Typography variant="h1">
               404: The page you are looking for isn’t here
             </Typography>
@@ -37,11 +37,6 @@ const NotFound = (props) => {
               You either tried some shady route or you came here by mistake.
               Whichever it is, try using the navigation
             </Typography>
-            <img
-              alt="Under development"
-              className={classes.image}
-              src="https://react-material-dashboard.devias.io/images/undraw_page_not_found_su7k.svg"
-            />
             <Button
               variant="contained"
               color="primary"
