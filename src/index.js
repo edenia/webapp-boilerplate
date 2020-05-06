@@ -11,6 +11,8 @@ import store from './store'
 import theme from './theme'
 import * as serviceWorker from './serviceWorker'
 
+import './i18n'
+
 const AppWithUAL = withUAL(App)
 
 render(

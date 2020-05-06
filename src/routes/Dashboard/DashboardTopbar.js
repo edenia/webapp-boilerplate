@@ -2,8 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import IconButton from '@material-ui/core/IconButton'
 import InputIcon from '@material-ui/icons/Input'
+import IconButton from '@material-ui/core/IconButton'
+import { useTranslation } from 'react-i18next'
 import { Link } from '@reach/router'
 import { useLocation, useHistory } from 'react-router-dom'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -11,6 +12,8 @@ import FingerprintIcon from '@material-ui/icons/Fingerprint'
 import LogoutIcon from '@material-ui/icons/ExitToApp'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
+
+import LanguageSelector from '../../components/LanguageSelector'
 
 const useStyles = makeStyles((theme) => ({
   sessionText: {
@@ -24,23 +27,28 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: 'white',
     textDecoration: 'none'
+  },
+  box: {
+    display: 'flex'
   }
 }))
 
-const DashboardTopbar = ({ onLogout, ual, appUseUAL }) => {
+const DashboardTopbar = ({ ual, appUseUAL }) => {
   const classes = useStyles()
+  const { t } = useTranslation('translations')
   const location = useLocation()
   const history = useHistory()
 
   if (!appUseUAL)
     return (
-      <IconButton color="inherit" onClick={onLogout}>
+      <IconButton color="inherit">
         <InputIcon />
       </IconButton>
     )
 
   return (
-    <>
+    <Box className={classes.box}>
+      <LanguageSelector />
       {ual.activeUser ? (
         <Box>
           <Link to="/account" className={classes.link}>
@@ -70,19 +78,18 @@ const DashboardTopbar = ({ onLogout, ual, appUseUAL }) => {
               <>
                 <FingerprintIcon />
                 <Typography className={classes.sessionText} variant="subtitle1">
-                  Login
+                  {t('login')}
                 </Typography>
               </>
             )}
           </IconButton>
         </>
       )}
-    </>
+    </Box>
   )
 }
 
 DashboardTopbar.propTypes = {
-  onLogout: PropTypes.func,
   ual: PropTypes.object,
   appUseUAL: PropTypes.bool
 }

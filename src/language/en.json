@@ -1,0 +1,12 @@
+{
+  "translations": {
+    "login": "Login",
+    "users": "Users",
+    "products": "Products",
+    "commingSoon": "Comming soon",
+    "code": "Code",
+    "cescription": "Description",
+    "cost": "Cost",
+    "logout": "Logout"
+  }
+}
