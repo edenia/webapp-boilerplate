@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0
   },
   button: {
-    color: theme.palette.primary.light,
+    color: theme.palette.primary.dark,
     padding: '10px 8px',
     justifyContent: 'flex-start',
     textTransform: 'none',
