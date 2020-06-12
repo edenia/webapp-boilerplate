@@ -1,9 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-
 import routes from './routes'
-
 const App = ({ ual }) => (
   <BrowserRouter>
     <Switch>

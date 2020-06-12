@@ -8,7 +8,6 @@ import { ualConfig } from './config'
 import App from './App'
 import theme from './theme'
 import * as serviceWorker from './serviceWorker'
-
 import './i18n'
 
 const AppWithUAL = withUAL(App)
