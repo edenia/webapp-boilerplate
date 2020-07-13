@@ -7,8 +7,7 @@ import { MainContainer } from '../../containers'
 
 import DashboardSidebar from './DashboardSidebar'
 import DashboardTopbar from './DashboardTopbar'
-import DashboardProducts from './DashboardProducts'
-import DashboardUsers from './DashboardUsers'
+import EditBPJson from './EditBPJson'
 
 const Dashboard = ({ ual }) => (
   <MainContainer
@@ -29,9 +28,10 @@ const Dashboard = ({ ual }) => (
   >
     <Grid container>
       <Switch>
-        <Route exact path="/dashboard/products" component={DashboardProducts} />
-        <Route exact path="/dashboard/users" component={DashboardUsers} />
-        <Redirect from="/dashboard" to="/dashboard/products" />
+        <Route exact path="/dashboard/bpjson-generator">
+          <EditBPJson ual={ual} />
+        </Route>
+        <Redirect from="/dashboard" to="/dashboard/bpjson-generator" />
       </Switch>
     </Grid>
   </MainContainer>
