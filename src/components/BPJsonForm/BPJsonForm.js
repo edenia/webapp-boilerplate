@@ -724,7 +724,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
 
 BPJsonForm.propTypes = {
   accountName: PropTypes.string,
-  bpJson: PropTypes.object,
+  bpJson: PropTypes.any,
   onSubmit: PropTypes.func
 }
 

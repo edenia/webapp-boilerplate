@@ -77,11 +77,10 @@ const EditBPJson = ({ ual }) => {
             code: 'eosio',
             table: 'producers',
             limit: 1,
-            lower_bound: 'junglemorpho' // ual.activeUser.accountName
+            lower_bound: ual.activeUser.accountName
           })
 
-          if (!rows.length || rows[0].owner !== 'junglemorpho') {
-            // ual.activeUser.accountName) {
+          if (!rows.length || rows[0].owner !== ual.activeUser.accountName) {
             setIsNotABP(true)
             setLoading(false)
 
