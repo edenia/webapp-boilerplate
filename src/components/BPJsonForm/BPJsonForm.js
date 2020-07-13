@@ -470,6 +470,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                 }
                 variant="outlined"
                 id="standard-basic"
+                value={producerData.location.name}
                 label="Name"
               />
               <TextField
@@ -478,6 +479,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                 }
                 variant="outlined"
                 id="standard-basic"
+                value={producerData.location.country}
                 label="Country"
               />
             </Box>
@@ -488,6 +490,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                 }
                 variant="outlined"
                 id="standard-basic"
+                value={producerData.location.latitude}
                 label="Latitude"
                 type="number"
               />
@@ -497,6 +500,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                 }
                 variant="outlined"
                 id="standard-basic"
+                value={producerData.location.longitude}
                 label="Longitude"
                 type="number"
               />
@@ -516,6 +520,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Github"
+                  value={producerData.social.github}
                 />
                 <TextField
                   onChange={(e) =>
@@ -524,6 +529,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Twitter"
+                  value={producerData.social.twitter}
                 />
                 <TextField
                   onChange={(e) =>
@@ -532,6 +538,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Youtube"
+                  value={producerData.social.youtube}
                 />
               </Box>
               <Box className={classes.socialBox}>
@@ -542,6 +549,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="facebook"
+                  value={producerData.social.facebook}
                 />
                 <TextField
                   onChange={(e) =>
@@ -550,6 +558,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Telegram"
+                  value={producerData.social.telegram}
                 />
                 <TextField
                   onChange={(e) =>
@@ -558,6 +567,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Steemit"
+                  value={producerData.social.steemit}
                 />
               </Box>
               <Box className={classes.socialBox}>
@@ -568,6 +578,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Reddit"
+                  value={producerData.social.reddit}
                 />
                 <TextField
                   onChange={(e) =>
@@ -576,6 +587,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Keybase"
+                  value={producerData.social.keybase}
                 />
                 <TextField
                   onChange={(e) =>
@@ -584,6 +596,7 @@ const BPJsonForm = ({ accountName, bpJson, onSubmit }) => {
                   variant="outlined"
                   id="standard-basic"
                   label="Webchat"
+                  value={producerData.social.webchat}
                 />
               </Box>
             </Box>
