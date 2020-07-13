@@ -62,7 +62,7 @@ const ImagePreview = ({ url, label, isInvalidURL }) => {
         unmountOnExit
         classes={{ wrapperInner: classes.center }}
       >
-        <img className={classes.media} src={url} title="branding image" />
+        <img className={classes.media} src={url} alt="node entity logo" />
       </Collapse>
     </List>
   )
