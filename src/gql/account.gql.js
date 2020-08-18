@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const NOTIFICATION_SUBSCRIPTION = gql`
   subscription {
-    record_tracking {
+    record_tracking(where: { project_id: { _eq: 2 } }) {
       id
       project_id
       json_data

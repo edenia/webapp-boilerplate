@@ -17,7 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import * as colors from '@material-ui/core/colors'
-import MUIDataTable from 'mui-datatables'
+import MUIDataTable, { TableToolbar, TableFooter } from 'mui-datatables'
 import ReactJson from 'react-json-view'
 import moment from 'moment'
 
@@ -40,6 +40,50 @@ const useStyles = makeStyles((theme) => ({
   arrowIcon: {
     right: 10,
     color: colors.blueGrey[600]
+  },
+  title: {
+    marginBottom: theme.spacing(3)
+  },
+  table: {
+    '@media print': {
+      margin: theme.spacing(4)
+    }
+  },
+  tableToolbar: {
+    '@media print': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  },
+  tableTitle: {
+    display: 'none',
+    padding: theme.spacing(0, 2),
+    '@media print': {
+      display: 'block'
+    }
+  },
+  tableLogo: {
+    display: 'none',
+    maxWidth: 80,
+    padding: theme.spacing(1, 2),
+    '@media print': {
+      display: 'block'
+    }
+  },
+  tableFooter: {
+    '@media print': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  },
+  tableNote: {
+    display: 'none',
+    padding: theme.spacing(0, 2),
+    '@media print': {
+      display: 'block'
+    }
   }
 }))
 
@@ -52,7 +96,7 @@ const Products = () => {
 
   const columns = [
     {
-      label: 'Data',
+      label: 'Datos',
       name: 'json_data',
       options: {
         searchable: false,
@@ -63,8 +107,8 @@ const Products = () => {
             enableClipboard={false}
             displayDataTypes={false}
             displayObjectSize={false}
-            collapsed
-            name="ISTMO"
+            collapsed={false}
+            name="="
           />
         )
       }
@@ -98,7 +142,7 @@ const Products = () => {
               return []
             }
 
-            return [`Blockchain status: ${filters[0]}`]
+            return [`Estado en el blockchain: ${filters[0]}`]
           },
           update: (filterList, filterPos, index) => {
             if (filterPos === -1) {
@@ -112,11 +156,11 @@ const Products = () => {
         },
         filterOptions: {
           logic: (location, filters) => {
-            if (filters[0] === 'Pending') {
+            if (filters[0] === 'Pendiente') {
               return !!location
             }
 
-            if (filters[0] === 'Synchronized') {
+            if (filters[0] === 'Sincronizado') {
               return !location
             }
 
@@ -126,7 +170,7 @@ const Products = () => {
             <Box>
               <FormControl className={classes.formControl}>
                 <InputLabel id="blockchainStatusLabel">
-                  Blockchain status
+                  Estado en el blockchain
                 </InputLabel>
                 <Select
                   labelId="blockchainStatusLabel"
@@ -138,8 +182,8 @@ const Products = () => {
                   }}
                   classes={{ icon: classes.arrowIcon }}
                 >
-                  <MenuItem value={'Synchronized'}>Synchronized</MenuItem>
-                  <MenuItem value={'Pending'}>Pending</MenuItem>
+                  <MenuItem value={'Sincronizado'}>Sincronizado</MenuItem>
+                  <MenuItem value={'Pendiente'}>Pendiente</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -148,7 +192,7 @@ const Products = () => {
       }
     },
     {
-      label: 'User Reference',
+      label: t('userReference'),
       name: 'user_reference',
       options: {
         filter: true,
@@ -160,7 +204,7 @@ const Products = () => {
               return []
             }
 
-            return [`User reference: ${filters[0]}`]
+            return [`${t('userReference')}: ${filters[0]}`]
           },
           update: (filterList, filterPos, index) => {
             if (filterPos === -1) {
@@ -185,7 +229,7 @@ const Products = () => {
             <TextField
               className={classes.formControl}
               id="userReference"
-              label="User reference"
+              label={t('userReference')}
               value={filterList[index][0] || ''}
               onChange={(event) => {
                 filterList[index][0] = event.target.value
@@ -204,7 +248,16 @@ const Products = () => {
       }
     },
     {
-      label: 'Created At',
+      label: t('identificationId'),
+      name: 'json_data',
+      options: {
+        filter: false,
+        searchable: false,
+        customBodyRender: (rowData) => <span>{rowData.identificationId}</span>
+      }
+    },
+    {
+      label: 'Fecha de creación',
       name: 'created_at',
       options: {
         filter: true,
@@ -219,13 +272,17 @@ const Products = () => {
 
             if (filters[0]) {
               chips.push(
-                `Created from: ${moment(filters[0]).format('DD/MM/yyyy')}`
+                `Fecha de creación desde: ${moment(filters[0]).format(
+                  'DD/MM/yyyy'
+                )}`
               )
             }
 
             if (filters[1]) {
               chips.push(
-                `Created to: ${moment(filters[1]).format('DD/MM/yyyy')}`
+                `Fecha de creación hasta: ${moment(filters[1]).format(
+                  'DD/MM/yyyy'
+                )}`
               )
             }
 
@@ -273,7 +330,7 @@ const Products = () => {
                 placeholder="11/08/2020"
                 margin="none"
                 id="createdFrom"
-                label="Created from"
+                label="Fecha de creación desde"
                 value={filterList[index][0] || null}
                 onChange={(value) => {
                   if (!moment(value).isValid()) return
@@ -294,7 +351,7 @@ const Products = () => {
                 placeholder="11/08/2020"
                 margin="none"
                 id="createdTo"
-                label="Created to"
+                label="Fecha de creación hasta"
                 value={filterList[index][1] || null}
                 onChange={(value) => {
                   if (!moment(value).isValid()) return
@@ -312,7 +369,7 @@ const Products = () => {
       }
     },
     {
-      label: 'Updated At',
+      label: 'Fecha de actualización',
       name: 'updated_at',
       options: {
         filter: true,
@@ -327,13 +384,17 @@ const Products = () => {
 
             if (filters[0]) {
               chips.push(
-                `Updated from: ${moment(filters[0]).format('DD/MM/yyyy')}`
+                `Fecha de actualización desde: ${moment(filters[0]).format(
+                  'DD/MM/yyyy'
+                )}`
               )
             }
 
             if (filters[1]) {
               chips.push(
-                `Updated to: ${moment(filters[1]).format('DD/MM/yyyy')}`
+                `Fecha de actualización hasta: ${moment(filters[1]).format(
+                  'DD/MM/yyyy'
+                )}`
               )
             }
 
@@ -381,7 +442,7 @@ const Products = () => {
                 placeholder="11/08/2020"
                 margin="none"
                 id="updatedFrom"
-                label="Updated from"
+                label="Fecha de actualización desde"
                 value={filterList[index][0] || null}
                 onChange={(value) => {
                   if (!moment(value).isValid()) return
@@ -402,7 +463,7 @@ const Products = () => {
                 placeholder="11/08/2020"
                 margin="none"
                 id="updatedTo"
-                label="Updated to"
+                label="Fecha de actualización hasta"
                 value={filterList[index][1] || null}
                 onChange={(value) => {
                   if (!moment(value).isValid()) return
@@ -425,16 +486,44 @@ const Products = () => {
     <Grid item xs={12}>
       <Card>
         <CardContent>
-          <Typography variant="h1">{t('recordTracking')}</Typography>
+          <Typography variant="h1" className={classes.title}>
+            {t('pageTitle')}
+          </Typography>
           <MUIDataTable
+            className={classes.table}
             columns={columns}
             data={recordTracking}
             options={{
-              print: false,
+              print: true,
+              download: false,
               selectableRows: 'none',
               downloadOptions: {
                 filename: 'record-tracking'
               }
+            }}
+            components={{
+              TableToolbar: ({ ...args }) => (
+                <div className={classes.tableToolbar}>
+                  <Typography variant="h2" className={classes.tableTitle}>
+                    {t('tableTitle')}
+                  </Typography>
+                  <img
+                    src="/logo-msp.png"
+                    className={classes.tableLogo}
+                    alt="logo msp"
+                  />
+                  <TableToolbar {...args} />
+                </div>
+              ),
+              TableFooter: ({ ...args }) => (
+                <div className={classes.tableFooter}>
+                  <Typography variant="body1" className={classes.tableNote}>
+                    {t('lastUpdatedAt')}:{' '}
+                    {moment().format('hh:mm:ss A DD/MM/yyyy')}
+                  </Typography>
+                  <TableFooter {...args} />
+                </div>
+              )
             }}
           />
         </CardContent>

@@ -1,10 +1,11 @@
 {
   "translations": {
     "login": "Iniciar sesión",
-    "users": "Usuarios",
-    "products": "Productos",
-    "recordTracking": "Rastreo de registros",
-    "usersTitle": "Listado de usuarios",
-    "logout": "Salir"
+    "pageTitle": "Bitácora en blockchain",
+    "tableTitle": "Reporte de acciones blockchain - RACSA - MSP",
+    "logout": "Salir",
+    "lastUpdatedAt": "Última actualización a las",
+    "userReference": "Identificación del oficial",
+    "identificationId": "Persona consultada"
   }
 }
