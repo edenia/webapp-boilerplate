@@ -251,9 +251,57 @@ const Products = () => {
       label: t('identificationId'),
       name: 'json_data',
       options: {
-        filter: false,
+        filter: true,
+        filterType: 'custom',
         searchable: false,
-        customBodyRender: (rowData) => <span>{rowData.identificationId}</span>
+        customBodyRender: (rowData) => <span>{rowData.identificationId}</span>,
+        customFilterListOptions: {
+          render: (filters) => {
+            if (!filters[0]) {
+              return []
+            }
+
+            return [`${t('identificationId')}: ${filters[0]}`]
+          },
+          update: (filterList, filterPos, index) => {
+            if (filterPos === -1) {
+              filterList[index] = []
+            } else {
+              filterList[index].splice(filterPos, 1, '')
+            }
+
+            return filterList
+          }
+        },
+        filterOptions: {
+          logic: (location, filters) => {
+            if (filters[0]) {
+              const regex = new RegExp(filters[0], 'i')
+              return !regex.test(location.identificationId)
+            }
+
+            return false
+          },
+          display: (filterList, onChange, index, column) => (
+            <TextField
+              className={classes.formControl}
+              id="identificationId"
+              label={t('identificationId')}
+              value={filterList[index][0] || ''}
+              onChange={(event) => {
+                filterList[index][0] = event.target.value
+                onChange(filterList[index], index, column)
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end" className={classes.userIcon}>
+                    <AccountCircle />
+                  </InputAdornment>
+                )
+              }}
+            />
+          )
+        }
       }
     },
     {
