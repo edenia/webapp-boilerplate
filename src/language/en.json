@@ -5,6 +5,8 @@
     "products": "Products",
     "productsTitle": "Products list",
     "usersTitle": "Users list",
-    "logout": "Logout"
+    "logout": "Logout",
+    "htmlTitle": "EOSCR Web App Boilerplate",
+    "headerTitle": "Secondary Title"
   }
 }

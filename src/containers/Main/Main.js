@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { Link as RouterLink } from 'react-router-dom'
@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingTop: theme.spacing(11),
+    padding: 0,
     display: 'flex'
   },
   appBar: {
@@ -45,14 +45,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Main = ({ children, sidebarContent, topbarContent }) => {
+const Main = ({
+  children,
+  sidebarContent,
+  topbarContent,
+  openSidebar,
+  setOpenSidebar
+}) => {
   const classes = useStyles()
   const theme = useTheme()
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true
   })
-
-  const [openSidebar, setOpenSidebar] = useState(false)
 
   return (
     <Container
@@ -86,7 +90,7 @@ const Main = ({ children, sidebarContent, topbarContent }) => {
         classes={{ paper: classes.drawerPaper }}
         onClose={() => setOpenSidebar(false)}
         open={openSidebar}
-        variant={isDesktop ? 'persistent' : 'temporary'}
+        variant="temporary"
         className={clsx({
           [classes.drawer]: true,
           [classes.drawerDesktop]: isDesktop && openSidebar
@@ -102,7 +106,14 @@ const Main = ({ children, sidebarContent, topbarContent }) => {
 Main.propTypes = {
   children: PropTypes.node,
   sidebarContent: PropTypes.node,
-  topbarContent: PropTypes.node
+  topbarContent: PropTypes.node,
+  openSidebar: PropTypes.bool,
+  setOpenSidebar: PropTypes.func
+}
+
+Main.defaultProps = {
+  openSidebar: false,
+  setOpenSidebar: () => {}
 }
 
 export default Main
