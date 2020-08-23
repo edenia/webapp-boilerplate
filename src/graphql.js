@@ -6,7 +6,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
 
-import { graphqlConfig } from './config'
+import { graphqlConfig } from 'config'
 
 const httpLink = createHttpLink({
   uri: graphqlConfig.url

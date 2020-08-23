@@ -10,7 +10,7 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
 import FingerprintIcon from '@material-ui/icons/Fingerprint'
 import InputIcon from '@material-ui/icons/Input'
 
-import CustomRouterLink from '../../components/CustomRouterLink'
+import CustomRouterLink from 'components/CustomRouterLink'
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -52,17 +52,22 @@ const useStyles = makeStyles((theme) => ({
 const PAGES = [
   {
     title: 'products',
-    href: '/dashboard/products',
+    href: '/dashboard/product',
     icon: <ShoppingBasketIcon />
   },
   {
     title: 'users',
-    href: '/dashboard/users',
+    href: '/dashboard/user',
     icon: <PeopleIcon />
   }
 ]
 
-const DashboardSidebarContent = ({ user, onLogout, onLogin }) => {
+const DashboardSidebarContent = ({
+  user,
+  onLogout,
+  onLogin,
+  setOpenSidebar
+}) => {
   const classes = useStyles()
   const { t } = useTranslation('translations')
 
@@ -76,6 +81,7 @@ const DashboardSidebarContent = ({ user, onLogout, onLogin }) => {
               className={classes.button}
               component={CustomRouterLink}
               to={page.href}
+              onClick={() => setOpenSidebar(false)}
             >
               <div className={classes.icon}>{page.icon}</div>
               {t(page.title)}
@@ -87,7 +93,10 @@ const DashboardSidebarContent = ({ user, onLogout, onLogin }) => {
             <Button
               className={classes.button}
               color="inherit"
-              onClick={onLogin}
+              onClick={() => {
+                onLogin()
+                setOpenSidebar(false)
+              }}
             >
               <div className={classes.icon}>
                 <FingerprintIcon />
@@ -101,7 +110,10 @@ const DashboardSidebarContent = ({ user, onLogout, onLogin }) => {
             <Button
               className={classes.button}
               color="inherit"
-              onClick={onLogout}
+              onClick={() => {
+                setOpenSidebar(false)
+                onLogout()
+              }}
             >
               <div className={classes.icon}>
                 <InputIcon />
@@ -118,7 +130,8 @@ const DashboardSidebarContent = ({ user, onLogout, onLogin }) => {
 DashboardSidebarContent.propTypes = {
   user: PropTypes.object,
   onLogout: PropTypes.func,
-  onLogin: PropTypes.func
+  onLogin: PropTypes.func,
+  setOpenSidebar: PropTypes.func
 }
 
 export default DashboardSidebarContent
