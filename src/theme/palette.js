@@ -3,16 +3,10 @@ import { EOSCR_THEME } from '@eoscostarica/eoscr-theme'
 
 export default {
   primary: {
-    contrastText: EOSCR_THEME.palette.primary.contrastText,
-    dark: EOSCR_THEME.palette.primary.main, // TODO: add dark key in primary object in the library
-    main: EOSCR_THEME.palette.primary.main,
-    light: EOSCR_THEME.palette.primary.light
+    ...EOSCR_THEME.palette.primary
   },
   secondary: {
-    contrastText: EOSCR_THEME.palette.secondary.contrastText,
-    dark: EOSCR_THEME.palette.secondary.dark,
-    main: EOSCR_THEME.palette.secondary.main,
-    light: EOSCR_THEME.palette.secondary.light
+    ...EOSCR_THEME.palette.secondary
   },
   success: {
     contrastText: EOSCR_THEME.palette.primary.contrastText,
