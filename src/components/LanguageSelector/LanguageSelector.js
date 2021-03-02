@@ -8,24 +8,9 @@ import IconButton from '@material-ui/core/IconButton'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    color: 'inherit'
-  },
-  languageText: {
-    fontSize: '1rem',
-    marginLeft: 3,
-    display: 'none',
-    color: theme.palette.primary.contrastText,
-    [theme.breakpoints.up('sm')]: {
-      display: 'inline'
-    }
-  },
-  iconLanguage: {
-    width: 24,
-    height: 24
-  }
-}))
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 const LanguageSelector = ({ alt }) => {
   const classes = useStyles()

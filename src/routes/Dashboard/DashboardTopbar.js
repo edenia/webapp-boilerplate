@@ -11,25 +11,9 @@ import Typography from '@material-ui/core/Typography'
 
 import LanguageSelector from 'components/LanguageSelector'
 
-const useStyles = makeStyles((theme) => ({
-  sessionText: {
-    marginLeft: 5,
-    color: theme.palette.primary.contrastText,
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'inline'
-    }
-  },
-  link: {
-    color: 'white',
-    textDecoration: 'none'
-  },
-  box: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    flex: 1
-  }
-}))
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 const DashboardTopbar = ({ user, onLogout, onLogin }) => {
   const classes = useStyles()
