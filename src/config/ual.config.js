@@ -23,7 +23,7 @@ const authenticators = [
   new Lynx([network]),
   new Ledger([network]),
   new Scatter([network], { appName }),
-  new TokenPocket([network.chainId]),
+  new TokenPocket([network]),
   new MeetOne([network.chainId]),
   new Anchor([network], { appName })
 ]
