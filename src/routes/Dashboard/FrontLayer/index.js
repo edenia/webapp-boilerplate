@@ -6,24 +6,15 @@ import Box from '@material-ui/core/Box'
 
 import ProductFrontLayer from './Product'
 import UserFrontLayer from './User'
+import styles from '../styles'
 
-const useStyles = makeStyles((theme) => ({
-  frontLayer: {
-    height: '100%',
-    overflowY: 'auto',
-    padding: 16,
-    [theme.breakpoints.up('lg')]: {
-      paddingRight: theme.spacing(32),
-      paddingLeft: theme.spacing(32)
-    }
-  }
-}))
+const useStyles = makeStyles(styles)
 
 const FrontLayer = ({ ual }) => {
   const classes = useStyles()
 
   return (
-    <Box className={classes.frontLayer}>
+    <Box className={classes.layer}>
       <Switch>
         <Route exact path="/dashboard/product" component={ProductFrontLayer} />
         <Route exact path="/dashboard/user" component={UserFrontLayer} />

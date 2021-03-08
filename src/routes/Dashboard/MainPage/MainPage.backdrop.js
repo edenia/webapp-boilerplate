@@ -11,69 +11,11 @@ import Alert from '@material-ui/lab/Alert'
 
 import BackLayer from '../BackLayer'
 import FrontLayer from '../FrontLayer'
+import styles from '../styles'
 
 const STATIC_PAGES = ['/product']
 
-const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    position: 'relative',
-    width: '100vw',
-    height: '100vh',
-    overflowY: 'hidden',
-    [theme.breakpoints.up('sm')]: {
-      height: '100vh'
-    }
-  },
-  backLayer: {
-    overflowY: 'auto'
-  },
-  headerBox: {
-    [theme.breakpoints.up('lg')]: {
-      paddingRight: theme.spacing(32),
-      paddingLeft: theme.spacing(32)
-    }
-  },
-  menu: {
-    flexGrow: 1,
-    marginTop: 80
-  },
-  menuButton: {
-    marginRight: 16
-  },
-  title: {
-    flexGrow: 1
-  },
-  frontLayerRoot: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-    zIndex: 0
-  },
-  root: {
-    backgroundColor: theme.palette.primary.light,
-    borderColor: theme.palette.primary.light,
-    borderBottomWidth: 0,
-    overflowX: 'hidden'
-  },
-  labelBackdrop: {
-    fontSize: 20.2,
-    fontWeight: 600,
-    letterSpacing: '0.25px',
-    color: 'rgba(0, 0, 0, 0.6)'
-  },
-  headerBoxNone: {
-    display: 'none'
-  },
-  alert: {
-    backgroundColor: 'rgba(0, 0, 0, 0.87)',
-    color: theme.palette.primary.contrastText,
-    '& a': {
-      color: theme.palette.primary.contrastText,
-      lineBreak: 'anywhere'
-    }
-  }
-}))
+const useStyles = makeStyles(styles)
 
 const MainPageBackdrop = ({ ual }) => {
   const { t, i18n } = useTranslation('translations')

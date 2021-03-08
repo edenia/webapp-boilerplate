@@ -12,42 +12,9 @@ import InputIcon from '@material-ui/icons/Input'
 
 import CustomRouterLink from 'components/CustomRouterLink'
 
-const useStyles = makeStyles((theme) => ({
-  nav: {
-    marginBottom: theme.spacing(2)
-  },
-  divider: {
-    margin: theme.spacing(2, 0)
-  },
-  item: {
-    display: 'flex',
-    paddingTop: 0,
-    paddingBottom: 0
-  },
-  button: {
-    color: theme.palette.primary.dark,
-    padding: '10px 8px',
-    justifyContent: 'flex-start',
-    textTransform: 'none',
-    letterSpacing: 0,
-    width: '100%',
-    fontWeight: theme.typography.fontWeightMedium
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: theme.spacing(1)
-  },
-  active: {
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightMedium,
-    '& $icon': {
-      color: theme.palette.primary.main
-    }
-  }
-}))
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 const PAGES = [
   {

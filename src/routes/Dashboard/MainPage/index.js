@@ -5,15 +5,9 @@ import Box from '@material-ui/core/Box'
 
 import FrontLayer from '../FrontLayer'
 import MainPageBackdrop from './MainPage.backdrop'
+import styles from '../styles'
 
-const useStyles = makeStyles((theme) => ({
-  rootMainPage: {
-    width: '100%',
-    height: '100%',
-    overflowY: 'hidden',
-    marginTop: theme.spacing(3)
-  }
-}))
+const useStyles = makeStyles(styles)
 
 const MainPage = ({ useBackdrop, ual }) => {
   const classes = useStyles()

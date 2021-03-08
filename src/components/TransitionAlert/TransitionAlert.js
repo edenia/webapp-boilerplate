@@ -7,12 +7,9 @@ import Collapse from '@material-ui/core/Collapse'
 import Box from '@material-ui/core/Box'
 import CloseIcon from '@material-ui/icons/Close'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    marginBottom: theme.spacing(1)
-  }
-}))
+import styles from './styles'
+
+const useStyles = makeStyles(styles)
 
 const TransitionAlert = ({ data, setData }) => {
   const classes = useStyles()
