@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Language as LanguageIcon } from '@material-ui/icons'
+import { Language as LanguageIcon } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/styles'
-import IconButton from '@material-ui/core/IconButton'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
+import Typography from '@mui/material/Typography'
+import { makeStyles } from '@mui/styles'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 
 import styles from './styles'
 
