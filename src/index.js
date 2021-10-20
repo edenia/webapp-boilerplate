@@ -1,11 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import { UALProvider, withUAL } from 'ual-reactjs-renderer'
 import { ApolloProvider } from '@apollo/react-hooks'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import MomentUtils from '@date-io/moment'
+import CssBaseline from '@mui/material/CssBaseline'
+import AdapterDateFns from '@mui/lab/AdapterDateFns'
+import { StylesProvider, createGenerateClassName } from '@mui/styles'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
 
 import { ualConfig } from './config'
 import App from './App'
@@ -13,6 +14,10 @@ import theme from './theme'
 import { client } from './graphql'
 import * as serviceWorker from './serviceWorker'
 import './i18n'
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'webApp' // Change this name for project prefix
+})
 
 const AppWithUAL = withUAL(App)
 
@@ -23,12 +28,14 @@ render(
     appName={ualConfig.appName}
   >
     <ApolloProvider client={client}>
-      <CssBaseline />
-      <ThemeProvider theme={theme}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <AppWithUAL />
-        </MuiPickersUtilsProvider>
-      </ThemeProvider>
+      <StylesProvider generateClassName={generateClassName}>
+        <CssBaseline />
+        <ThemeProvider theme={theme}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <AppWithUAL />
+          </LocalizationProvider>
+        </ThemeProvider>
+      </StylesProvider>
     </ApolloProvider>
   </UALProvider>,
   document.getElementById('root')
