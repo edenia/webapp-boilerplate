@@ -1,4 +1,4 @@
-FROM node:12.16.2-alpine  as build-stage
+FROM node:16.0.0-alpine  as build-stage
 
 ARG react_app_api_entrypoint
 

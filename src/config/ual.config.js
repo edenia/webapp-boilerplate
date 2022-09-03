@@ -1,32 +1,20 @@
-import { Scatter } from 'ual-scatter'
-import { Ledger } from 'ual-ledger'
-import { Lynx } from 'ual-lynx'
-import { TokenPocket } from 'ual-token-pocket'
-import { MeetOne } from 'ual-meetone'
 import { Anchor } from 'ual-anchor'
 
 const appName = process.env.REACT_APP_EOS_APP_NAME || 'eoscrwebappboilerplate'
 const network = {
   chainId:
     process.env.REACT_APP_EOS_CHAIN_ID ||
-    'e70aaab8997e1dfce58fbfac80cbbb8fecec7b99cf982a9444273cbc64c41473',
+    '73e4385a2708e6d7048834fbc1079f2fabb17b3c125b146af438971e90716c4d',
   rpcEndpoints: [
     {
       blockchain: 'eos',
       protocol: process.env.REACT_APP_EOS_API_PROTOCOL || 'https',
-      host: process.env.REACT_APP_EOS_API_HOST || 'jungle2.eosio.cr',
+      host: process.env.REACT_APP_EOS_API_HOST || 'jungle.edenia.cloud',
       port: parseInt(process.env.REACT_APP_EOS_API_PORT || '443')
     }
   ]
 }
-const authenticators = [
-  new Lynx([network]),
-  new Ledger([network]),
-  new Scatter([network], { appName }),
-  new TokenPocket([network]),
-  new MeetOne([network.chainId]),
-  new Anchor([network], { appName })
-]
+const authenticators = [new Anchor([network], { appName })]
 
 export const ualConfig = {
   appName,
