@@ -1,12 +1,13 @@
 {
   "translations": {
     "login": "Login",
-    "users": "Users",
-    "products": "Products",
-    "productsTitle": "Products list",
-    "usersTitle": "Users list",
     "logout": "Logout",
-    "htmlTitle": "EOSCR Web App Boilerplate",
-    "headerTitle": "Secondary Title"
+    "htmlTitle": "Edenia Web App Boilerplate",
+    "headerTitle": "Secondary Title",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode"
+  },
+  "homeRoute": {
+    "welcomeMessage": "Welcome to Edenia Webapp Boilerplate"
   }
 }
